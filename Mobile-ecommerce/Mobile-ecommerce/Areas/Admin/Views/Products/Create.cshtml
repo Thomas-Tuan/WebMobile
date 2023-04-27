@@ -1,0 +1,106 @@
+﻿@model Mobile_ecommerce.Models.ViewModel.Product.Create
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_LayoutPage.cshtml";
+}
+@section scripts{
+    <script src="~/Asset/Pluggin/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("txtDes");    
+        CKEDITOR.replace("txtInfoPro");  
+    </script>
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header py-2">
+                    <h4 class="header-title mb-0">Tạo sản phẩm mới</h4>
+                </div>
+                <div class="collapse pt-3 show">
+                    @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.ProductName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Category, "Loại", new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.Category, new SelectList(ViewBag.ListCate, "CategoryID", "CategoryName"), new { @class = "form-control text-box single-line" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextAreaFor(model => model.Description, new { @id = "txtInfoPro", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.InfoPro, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextAreaFor(model => model.InfoPro, new { @id = "txtDes", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.InfoPro, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2 ms-3" })
+                            <div class="col-md-9">
+                                <img src="@Url.Content(@ViewBag.Image)" style="width:100px;height:100px" id="ImageMain" />
+                                <input type="file" name="ImageUpload" onchange="ShowImageMain(this, document.getElementById('ImageMain'))" />
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            @Html.LabelFor(model => model.ImagePro, htmlAttributes: new { @class = "control-label col-md-2 ms-3" })
+                            <div class="col-md-9">
+                                <img src="@Url.Content(@ViewBag.ImageNote)" style="width:100px;height:100px" id="ImageCover" />
+                                <input type="file" name="ImageProItem" onchange="ShowImageMain(this, document.getElementById('ImageCover'))" />
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Color, "Màu sắc", new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.Color, (IEnumerable<SelectListItem>)ViewBag.lstColor, new { @class = "form-control text-box single-line" })
+                                <p id="error-color"></p>
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row mt-3">
+                            <div class="col-md-2">
+                                @Html.ActionLink("Trở về", "Index", "Products", null, new { @class = "btn btn-light" })
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@model Mobile_ecommerce.Models.ViewModel.Customer.Edit
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Employee/Views/Shared/Emp_LayoutPage.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header py-2">
+                    <h4 class="header-title mb-0">Sửa khách hàng ID = @Model.MaKH</h4>
+                </div>
+                <div class="collapse pt-3 show">
+                    @using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2 ms-3" })
+                            <div class="col-md-9">
+                                <img src="@Url.Content(@ViewBag.Image)" style="width:100px;height:100px" id="ImageMain" />
+                                <input type="file" name="ImageUpload" onchange="ShowImageMain(this, document.getElementById('ImageMain'))" />
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row mt-3">
+                            <div class="col-md-2">
+                                @Html.ActionLink("Trở về", "Index", "Customer", null, new { @class = "btn btn-light" })
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

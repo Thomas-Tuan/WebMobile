@@ -1,0 +1,12 @@
+﻿.card:hover {
+    transform: scaleY(1.05);
+    transition: all 0.3s ease-out;
+}
+.order {
+    background-color: #ffbf80;
+    color: #ffffe6;
+}
+    .order:hover {
+        background-color: #ff9933;
+        color: white;
+    }
