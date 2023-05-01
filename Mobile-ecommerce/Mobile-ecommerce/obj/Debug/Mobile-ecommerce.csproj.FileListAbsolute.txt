@@ -1,4 +1,3 @@
-D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csproj.CoreCompileInputs.cache
 D:\Mobile-ecommerce\Mobile-ecommerce\bin\Mobile-ecommerce.dll.config
 D:\Mobile-ecommerce\Mobile-ecommerce\bin\Mobile-ecommerce.dll
 D:\Mobile-ecommerce\Mobile-ecommerce\bin\Mobile-ecommerce.pdb
@@ -81,9 +80,10 @@ D:\Mobile-ecommerce\Mobile-ecommerce\bin\System.Web.Optimization.xml
 D:\Mobile-ecommerce\Mobile-ecommerce\bin\Newtonsoft.Json.xml
 D:\Mobile-ecommerce\Mobile-ecommerce\bin\Antlr3.Runtime.pdb
 D:\Mobile-ecommerce\Mobile-ecommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csproj.CoreCompileInputs.cache
 D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csproj.CopyComplete
 D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.dll
 D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.pdb
-D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csprojAssemblyReference.cache
 D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile_ecommerce.Migrations.initial.resources
 D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csproj.GenerateResource.cache
+D:\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csprojAssemblyReference.cache

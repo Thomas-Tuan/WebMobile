@@ -101,22 +101,6 @@ namespace Mobile_ecommerce.Migrations
                 .Index(t => t.RoleID);
             
             CreateTable(
-                "dbo.ReviewProes",
-                c => new
-                    {
-                        ReviewProID = c.Int(nullable: false, identity: true),
-                        RateValue = c.Int(nullable: false),
-                        Comment = c.String(),
-                        ProductID = c.Int(nullable: false),
-                        User_UserID = c.Int(),
-                    })
-                .PrimaryKey(t => t.ReviewProID)
-                .ForeignKey("dbo.Products", t => t.ProductID, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.User_UserID)
-                .Index(t => t.ProductID)
-                .Index(t => t.User_UserID);
-            
-            CreateTable(
                 "dbo.Roles",
                 c => new
                     {
@@ -163,6 +147,32 @@ namespace Mobile_ecommerce.Migrations
                     })
                 .PrimaryKey(t => t.VoucherID);
             
+            CreateTable(
+                "dbo.Contacts",
+                c => new
+                    {
+                        ContactID = c.Int(nullable: false, identity: true),
+                        tenkh = c.String(nullable: false),
+                        mail = c.String(nullable: false),
+                        dienthoai = c.String(nullable: false),
+                        tieude = c.String(nullable: false),
+                        noidung = c.String(),
+                    })
+                .PrimaryKey(t => t.ContactID);
+            
+            CreateTable(
+                "dbo.ReviewProes",
+                c => new
+                    {
+                        ReviewProID = c.Int(nullable: false, identity: true),
+                        RateValue = c.Int(nullable: false),
+                        Comment = c.String(),
+                        ReviewerName = c.String(),
+                        ReviewContent = c.String(),
+                        ReviewDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ReviewProID);
+            
         }
         
         public override void Down()
@@ -174,14 +184,10 @@ namespace Mobile_ecommerce.Migrations
             DropForeignKey("dbo.OrderDetails", "OrderID", "dbo.Orders");
             DropForeignKey("dbo.Customers", "CustomerID", "dbo.Users");
             DropForeignKey("dbo.Users", "RoleID", "dbo.Roles");
-            DropForeignKey("dbo.ReviewProes", "User_UserID", "dbo.Users");
-            DropForeignKey("dbo.ReviewProes", "ProductID", "dbo.Products");
             DropForeignKey("dbo.Orders", "CustomerID", "dbo.Customers");
             DropForeignKey("dbo.Products", "CategoryID", "dbo.Categories");
             DropIndex("dbo.Shippings", new[] { "Order_OrderID" });
             DropIndex("dbo.OrderStatus", new[] { "Order_OrderID" });
-            DropIndex("dbo.ReviewProes", new[] { "User_UserID" });
-            DropIndex("dbo.ReviewProes", new[] { "ProductID" });
             DropIndex("dbo.Users", new[] { "RoleID" });
             DropIndex("dbo.Customers", new[] { "CustomerID" });
             DropIndex("dbo.Orders", new[] { "VoucherID" });
@@ -189,11 +195,12 @@ namespace Mobile_ecommerce.Migrations
             DropIndex("dbo.OrderDetails", new[] { "OrderID" });
             DropIndex("dbo.Products", new[] { "OrderDetail_OrderDetailID" });
             DropIndex("dbo.Products", new[] { "CategoryID" });
+            DropTable("dbo.ReviewProes");
+            DropTable("dbo.Contacts");
             DropTable("dbo.Vouchers");
             DropTable("dbo.Shippings");
             DropTable("dbo.OrderStatus");
             DropTable("dbo.Roles");
-            DropTable("dbo.ReviewProes");
             DropTable("dbo.Users");
             DropTable("dbo.Customers");
             DropTable("dbo.Orders");

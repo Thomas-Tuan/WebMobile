@@ -12,9 +12,9 @@ using Mobile_ecommerce.Models.ViewModel.Common;
 using PagedList;
 namespace Mobile_ecommerce.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {       
-        private MobileDbContext db = new MobileDbContext();
+        private MobileDbContext db = new MobileDbContext();   
         // GET: Product
         public ActionResult Index(string searchString,int? page, string sortOrder)
         {
@@ -70,12 +70,48 @@ namespace Mobile_ecommerce.Controllers
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {
+            Session["ProID"] = id;
             var pro = db.Products.Where(n => n.ProductID.Equals(id)).FirstOrDefault();
             string values = pro.Price.ToString();
             System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
             decimal value = decimal.Parse(values, System.Globalization.NumberStyles.AllowThousands);
-            ViewBag.price = string.Format(culture, "{0:N0}", value); ;
+            ViewBag.price = string.Format(culture, "{0:N0}", value);
+            ViewBag.Cate = pro.CategoryID;
             return View(pro);
+        }
+        public ActionResult ReviewPartial()
+        {
+            return PartialView();
+        }
+        public ActionResult ListReview(int? page)
+        {
+            List<ReviewPro> products = db.ReviewPros.ToList();          
+            int pageSize = 4;
+            int pageNum = (page ?? 1);
+            return PartialView(products.OrderByDescending(n => n.ReviewProID).ToPagedList(pageNum, pageSize));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddReview(ReviewPro review)
+        {
+            int id = int.Parse(Session["ProID"].ToString());
+            var pro = db.Products.Where(n => n.ProductID.Equals(id)).FirstOrDefault();
+            string values = pro.Price.ToString();
+            System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+            decimal value = decimal.Parse(values, System.Globalization.NumberStyles.AllowThousands);
+            ViewBag.price = string.Format(culture, "{0:N0}", value);
+            ViewBag.Cate = pro.CategoryID;
+            if (ModelState.IsValid)
+            {
+                review.ReviewDate = DateTime.Now;
+                db.ReviewPros.Add(review);
+                db.SaveChanges();
+                TempData["AlertMessage"] = "Nhận xét thành công !";
+                TempData["AlertType"] = "alert-success";
+                return View("Details",pro);
+            }
+            ViewBag.error = "Vui lòng nhập thông tin nhận xét !";
+            return View("Details",pro);
         }
     }
 }

@@ -32,6 +32,11 @@ namespace Mobile_ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (model.login_password == null)
+                {
+                    ViewBag.error = "Tên đăng nhập hoặc mật khẩu không đúng !";
+                    return View("Index");
+                }
                 string hashPass = Encryptor.MD5Hash(model.login_password);
                 var check = db.Users.Where(m => m.UserName.Equals(model.login_name) && m.UserPass.Equals(hashPass)).FirstOrDefault();
                 if (check == null)

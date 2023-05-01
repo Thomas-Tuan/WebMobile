@@ -120,8 +120,8 @@ namespace Mobile_ecommerce.Areas.Admin.Controllers
             var data = await db.GetList(request);
             foreach (var item in data.Items)
             {
-                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-                decimal value = decimal.Parse(item.Price, System.Globalization.NumberStyles.AllowThousands);            
+                CultureInfo culture = new CultureInfo("en-US");
+                decimal value = decimal.Parse(item.Price, NumberStyles.AllowThousands);            
                 item.Price = string.Format(culture, "{0:N0}", value); ;
             }
             int totalRecord = data.TotalRecord;

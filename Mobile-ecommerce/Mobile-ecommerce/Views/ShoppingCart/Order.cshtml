@@ -34,9 +34,9 @@
                     }
                     <tr>
                         <td class="fw-bold">Tổng cộng:</td>
-                        @if (ViewBag.Totalprice != null)
+                        @if (Session["TotalWithVoucher"] != null)
                         {
-                            <td colspan="3">@ViewBag.Totalprice<span> VNĐ</span></td>
+                            <td colspan="3">@Session["TotalWithVoucher"]<span> VNĐ</span></td>
                         }
                         else
                         {
@@ -85,8 +85,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="text-align: center;">
+                <td style="text-align: center;">
                     @Html.ActionLink("Thanh toán ngay", "SuccessOrder", "ShoppingCart", new { @class = "btn btn-primary" })
+                </td>
+                <td style="text-align: center;">
+                    @Html.ActionLink("Hoặc thanh toán bằng VNPAY", "Payment", "ShoppingCart", new { @class = "btn btn-primary" })
                 </td>
             </tr>
         </table>

@@ -15,6 +15,7 @@ namespace Mobile_ecommerce.Controllers
     public class HomeController : BaseController
     {
         private CusDAL cus;
+        private MobileDbContext dbContext = new MobileDbContext();
         public HomeController()
         {
             cus = new CusDAL();
@@ -23,11 +24,21 @@ namespace Mobile_ecommerce.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult Contact()
         {
-            ViewBag.Message = "Your application description page.";
-
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Contact(Contact form)
+        {
+            if (ModelState.IsValid)
+            {
+                dbContext.Contacts.Add(form);
+                dbContext.SaveChanges();
+                SetAlert("Gửi đơn thành công", "success");
+                return View();
+            }
             return View();
         }
         public ActionResult Logout()

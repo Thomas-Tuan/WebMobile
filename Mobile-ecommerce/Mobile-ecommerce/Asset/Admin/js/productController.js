@@ -29,7 +29,7 @@
                     str += "<td>" + "Hết hàng" + "</td>";
                 }
                 str += '<td class="d-flex justify-content-around"><a class="btn btn-warning" href="/Admin/Products/Edit/' + value.ProductID + '">Cập nhật</a>';
-                str += '<a class="btn btn-danger" href="#" data-user=' + value.ProductID + '>Xóa</a>';
+                str += '<a class="btn btn-danger" href="#" data-user=' + value.ProductID + '>Xóa</a></td>';
                 str += "</tr>";
 
                 //create pagination

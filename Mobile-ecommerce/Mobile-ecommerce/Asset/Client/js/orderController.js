@@ -1,6 +1,6 @@
 ﻿var load = function (keyWord, pageIndex, pageSize) {
     $.ajax({
-        url: "/Admin/Voucher/GetPaging",
+        url: "/Order/GetPaging",
         data: {
             keyWord: keyWord,
             pageIndex: pageIndex,
@@ -9,20 +9,19 @@
         type: "GET",
         success: function (response) {
             var pageCurrent = response.pageCurrent;
-            var toalPage = response.toalPage;
+            var totalPage = response.totalPage;
 
             var str = "";
-            var info = `Trang ${pageCurrent} / ${toalPage}`;
+            var info = `Trang ${pageCurrent} / ${totalPage}`;
             $("#selection-datatable_info").text(info);
             $.each(response.data, function (index, value) {
                 str += "<tr>";
-                str += "<td>" + value.VoucherID + "</td>";
-                str += "<td>" + value.Name + "</td>";
-                str += "<td>" + value.DateStart + "</td>";
-                str += "<td>" + value.DateEnd + "</td>";
-                str += "<td>" + value.Value + "</td>";
-                str += '<td class="d-flex justify-content-around"><a class="btn btn-warning" href="/Admin/Voucher/Edit/' + value.VoucherID + '">Cập nhật</a>';
-                str += '<a class="btn btn-danger" href="#" data-user=' + value.VoucherID + '>Xóa</a>';
+                str += "<td>" + value.OrderID + "</td>";
+                str += "<td>" + value.Ngay + "</td>";
+                str += "<td>" + value.TongTien + "</td>";
+                str += "<td>" + value.Status + "</td>";          
+                str += '<td class="d-flex justify-content-around"><a class="btn btn-info text-white" href="/Order/Details/' + value.OrderID + '">Xem chi tiết</a>';
+                str += '<a class="btn btn-warning text-white" href="#" data-user=' + value.OrderID + '>Sửa đơn hàng</a></td>';     
                 str += "</tr>";
 
                 //create pagination
@@ -32,7 +31,7 @@
                     var pagePrevious = pageCurrent - 1;
                     pagination_string += '<li class="paginate_button page-item previous"><a href="#" class="page-link" data-page="' + pagePrevious + '">‹</a></li>';
                 }
-                for (var i = 1; i <= toalPage; i++) {
+                for (var i = 1; i <= totalPage; i++) {
                     if (i == pageCurrent) {
                         pagination_string += '<li class="paginate_button page-item active"><a class="page-link" href="#" data-page=' + i + '>' + i + '</a></li>';
                     } else {
@@ -40,7 +39,7 @@
                     }
                 }
                 //create button next
-                if (pageCurrent > 0 && pageCurrent < toalPage) {
+                if (pageCurrent > 0 && pageCurrent < totalPage) {
                     var pageNext = pageCurrent + 1;
                     pagination_string += '<li class="paginate_button page-item next"><a href="#" class="page-link" data-page=' + pageNext + '>›</a></li>';
                 }
@@ -52,15 +51,14 @@
     });
 }
 
-//click delete button
-$("body").on("click", "#datatablesSimple a.btn.btn-danger", function (event) {
+$("body").on("click", "#datatablesSimple a.btn.btn-warning", function (event) {
     event.preventDefault();
-    var cate_delete = $(this).attr('data-user');
-    if (confirm("Bạn có muốn xóa  loại sản phẩm có id = " + cate_delete + " này không?")) {
+    var cate_edit = $(this).attr('data-user');
+    if (confirm("Bạn có muốn hủy đơn hàng có id = " + cate_edit + " này không?")) {
         $.ajax({
-            url: "/Admin/Voucher/Delete",
+            url: "/Order/Edit",
             type: "POST",
-            data: { id: cate_delete },
+            data: { id: cate_edit },
             dataType: "json",
             success: (result) => {
                 location.reload();

@@ -1,0 +1,75 @@
+﻿@model Mobile_ecommerce.Models.ViewModel.Order.Edit
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_LayoutPage.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header py-2">
+                    <h4 class="header-title mb-0">Cập nhật hóa đơn ID =@Model.OrderID</h4>
+                </div>
+                <div class="collapse pt-3 show">
+                    @using (Html.BeginForm("Edit", "OrderAd"))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group align-items-center row">
+                                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group align-items-center row">
+                                @Html.LabelFor(model => model.ShippingID, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.DropDownListFor(model => model.ShippingID, new SelectList(ViewBag.ListShipping, "ShippingID", "ShippingMethod"), new { @class = "form-control text-box single-line" })
+                                    @Html.ValidationMessageFor(model => model.ShippingID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group align-items-center row">
+                                @Html.LabelFor(model => model.StatusID, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.DropDownListFor(model => model.StatusID, new SelectList(ViewBag.ListStatus, "OrderStatusID", "Status"), new { @class = "form-control text-box single-line" })
+                                    @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group align-items-center row">
+                                @Html.LabelFor(model => model.Ngay, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.DisplayFor(model => model.Ngay, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group align-items-center row">
+                                @Html.LabelFor(model => model.TongTien, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.DisplayFor(model => model.TongTien, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TongTien, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group align-items-center row mt-3">
+                                <div class="col-md-2">
+                                    @Html.ActionLink("Trở về", "Index", "OrderAd", null, new { @class = "btn btn-warning text-light" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

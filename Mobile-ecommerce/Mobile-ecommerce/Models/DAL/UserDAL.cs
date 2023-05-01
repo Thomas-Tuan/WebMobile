@@ -276,6 +276,42 @@ namespace Mobile_ecommerce.Models.DAL
                 return false;
             }
         }
+        public int NumUser()
+        {
+            try
+            {
+                var number = dbContext.Users.Where(x => x.UserID == CommonConstants.QUAN_TRI).Count();
+                return number;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+        public int NumEmployee()
+        {
+            try
+            {
+                var number = dbContext.Users.Where(x => x.UserID == CommonConstants.NHAN_VIEN).Count();
+                return number;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+        public int NumCustomer()
+        {
+            try
+            {
+                var number = dbContext.Users.Where(x => x.UserID == CommonConstants.KHACH_HANG).Count();
+                return number;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
         public async Task<UserRole> GetRoleById(int id)
         {
             try

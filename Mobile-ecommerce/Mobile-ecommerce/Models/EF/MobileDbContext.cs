@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.Threading.Tasks;
+using Mobile_ecommerce.Models.ViewModel.Common;
+
 namespace Mobile_ecommerce.Models.EF
 {
     public class MobileDbContext:DbContext
@@ -19,8 +22,14 @@ namespace Mobile_ecommerce.Models.EF
         public DbSet<Shipping> Shippings { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<ReviewPro> ReviewPros { get; set; }
+
+        internal Task GetList(GetListPaging request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

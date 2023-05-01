@@ -21,6 +21,5 @@ namespace Mobile_ecommerce.Models.EF
    
         public virtual Customer Customer { get; set; }    
 
-        public ICollection<ReviewPro> ReviewPro { get; set; }
     }
 }

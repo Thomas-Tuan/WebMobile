@@ -27,7 +27,7 @@
                 else {
                     str += "<td>Nam" + "</td>";
                 }
-                str += '<td class="text-center"><a class="btn btn-warning" href="/Admin/Customer/Edit/' + value.MaKH + '">Cập nhật</a>';                        
+                str += '<td class="text-center"><a class="btn btn-warning" href="/Admin/Customer/Edit/' + value.MaKH + '">Cập nhật</a></td>';                        
                 str += "</tr>";
 
                 //create pagination

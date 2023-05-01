@@ -11,10 +11,13 @@ namespace Mobile_ecommerce.Models.EF
     {
         [Key]
         public int ReviewProID { get; set; }
+        [Display(Name ="Đánh giá")]
         public int RateValue { get; set; }
-        public string Comment { get; set; }
-
-        public int ProductID { get; set; }
-        public virtual Product Product { get; set; }
+        [Display(Name = "Tên khách hàng")]
+        public string ReviewerName { get; set; }
+        [Display(Name = "Nhận xét")]
+        public string ReviewContent { get; set; }
+        [Display(Name = "Ngày đăng")]
+        public DateTime ReviewDate { get; set; }
     }
 }

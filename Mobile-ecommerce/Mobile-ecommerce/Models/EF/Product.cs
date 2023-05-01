@@ -23,7 +23,6 @@ namespace Mobile_ecommerce.Models.EF
         public int CategoryID { get; set; }
         public Category Category { get; set; }
 
-        public ICollection<ReviewPro> ReviewPro { get; set; }
 
         public OrderDetail OrderDetail { get; set; }
     }

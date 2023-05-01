@@ -1,0 +1,49 @@
+﻿@model Mobile_ecommerce.Models.ViewModel.Contact.Detail
+
+@{
+    ViewBag.Title = "Chi tiết đơn phản hồi";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_LayoutPage.cshtml";
+}
+<h4 class="header-title mb-0 text-center">Chi tiết đơn phản hồi</h4>
+<table class="table bg-gradient-primary text-light mt-2 ">
+    <tr class="fw-bold">
+        <th>
+            @Html.DisplayNameFor(model => model.tenkh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dienthoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tieude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noidung)
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.tenkh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.dienthoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.tieude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.noidung)
+        </td>
+    </tr>
+</table>
+<div class="form-group align-items-center row mt-3">
+    <div class="col-md-2">
+        @Html.ActionLink("Trở về", "Index", "ContactAd", null, new { @class = "btn btn-warning text-light" })
+    </div>
+</div>

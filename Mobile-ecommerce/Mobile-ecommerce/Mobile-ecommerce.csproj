@@ -132,12 +132,15 @@
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactAdController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderAdController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\VoucherController.cs" />
     <Compile Include="Areas\Admin\Model\AdminLogin.cs" />
+    <Compile Include="Areas\Admin\Model\Chart.cs" />
     <Compile Include="Areas\Admin\Model\LoginCheck.cs" />
     <Compile Include="Areas\Admin\Model\ResultPaging.cs" />
     <Compile Include="Areas\Employee\Controllers\BaseController.cs" />
@@ -147,28 +150,34 @@
     <Compile Include="Areas\Employee\Controllers\UserController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Employee\Model\EmpLogin.cs" />
+    <Compile Include="Asset\Pluggin\Others\PayCompare.cs" />
+    <Compile Include="Asset\Pluggin\Others\PayLib.cs" />
+    <Compile Include="Asset\Pluggin\Others\Util.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserClientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202304231936177_initial.cs" />
-    <Compile Include="Migrations\202304231936177_initial.Designer.cs">
-      <DependentUpon>202304231936177_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202304301845245_initial.cs" />
+    <Compile Include="Migrations\202304301845245_initial.Designer.cs">
+      <DependentUpon>202304301845245_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DAL\CategoryDAL.cs" />
     <Compile Include="Models\DAL\CusDAL.cs" />
+    <Compile Include="Models\DAL\OrderDAL.cs" />
     <Compile Include="Models\DAL\ProductDAL.cs" />
     <Compile Include="Models\DAL\UserDAL.cs" />
     <Compile Include="Models\DAL\VoucherDAL.cs" />
     <Compile Include="Models\EF\Cart.cs" />
+    <Compile Include="Models\EF\Contact.cs" />
     <Compile Include="Models\EF\Customer.cs" />
     <Compile Include="Models\EF\MobileDbContext.cs" />
     <Compile Include="Models\EF\Order.cs" />
@@ -182,6 +191,10 @@
     <Compile Include="Models\EF\User.cs" />
     <Compile Include="Models\EF\Voucher.cs" />
     <Compile Include="Models\ViewModel\Category\DetailCate.cs" />
+    <Compile Include="Models\ViewModel\Contact\Detail.cs" />
+    <Compile Include="Models\ViewModel\Order\Detail.cs" />
+    <Compile Include="Models\ViewModel\Order\Edit.cs" />
+    <Compile Include="Models\ViewModel\Order\OrderInfo.cs" />
     <Compile Include="Models\ViewModel\Voucher\Edit.cs" />
     <Compile Include="Models\ViewModel\Common\GetListPaging.cs" />
     <Compile Include="Models\ViewModel\Customer\Create.cs" />
@@ -209,7 +222,10 @@
     <Content Include="Asset\Admin\css\sb-admin-2.min.css" />
     <Content Include="Asset\Admin\img\add.jpg" />
     <Content Include="Asset\Admin\img\addnote.jpg" />
-    <Content Include="Asset\Admin\js\voucher.js" />
+    <Content Include="Asset\Admin\js\chartAdmin.js" />
+    <Content Include="Asset\Admin\js\contactController.js" />
+    <Content Include="Asset\Admin\js\orderController.js" />
+    <Content Include="Asset\Admin\js\voucherController.js" />
     <Content Include="Asset\Client\css\404.css" />
     <Content Include="Asset\Client\css\notfound.css" />
     <Content Include="Asset\Client\css\order.css" />
@@ -218,10 +234,6 @@
     <Content Include="Asset\Admin\js\categoryController.js" />
     <Content Include="Asset\Admin\js\common.js" />
     <Content Include="Asset\Admin\js\cusController.js" />
-    <Content Include="Asset\Admin\js\demo\chart-area-demo.js" />
-    <Content Include="Asset\Admin\js\demo\chart-bar-demo.js" />
-    <Content Include="Asset\Admin\js\demo\chart-pie-demo.js" />
-    <Content Include="Asset\Admin\js\demo\datatables-demo.js" />
     <Content Include="Asset\Admin\js\productController.js" />
     <Content Include="Asset\Admin\js\sb-admin-2.js" />
     <Content Include="Asset\Admin\js\sb-admin-2.min.js" />
@@ -1908,6 +1920,7 @@
     <Content Include="Asset\Admin\img\banner\registerbanner.jpg" />
     <Content Include="Asset\Client\js\404.js" />
     <Content Include="Asset\Client\js\login.js" />
+    <Content Include="Asset\Client\js\orderController.js" />
     <Content Include="Asset\Emp\js\common.js" />
     <Content Include="Asset\Emp\js\cusController.js" />
     <Content Include="Asset\Emp\js\userController.js" />
@@ -2457,7 +2470,6 @@
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\RoleAssign.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
@@ -2520,7 +2532,13 @@
     <Content Include="Areas\Admin\Views\Voucher\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Voucher\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Voucher\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAd\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAd\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactAd\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactAd\Info.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
@@ -2568,13 +2586,16 @@
     <Content Include="Views\ShoppingCart\Success.cshtml" />
     <Content Include="Views\ShoppingCart\Failure.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAd\Edit.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Product\ReviewPartial.cshtml" />
+    <Content Include="Views\Product\ListReview.cshtml" />
+    <Content Include="Views\ShoppingCart\PaymentConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Views\Base\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\Cart\" />
-    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2583,8 +2604,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202304231936177_initial.resx">
-      <DependentUpon>202304231936177_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202304301845245_initial.resx">
+      <DependentUpon>202304301845245_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

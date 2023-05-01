@@ -1,6 +1,7 @@
 ﻿using Mobile_ecommerce.Areas.Admin.Model;
 using Mobile_ecommerce.Models.EF;
 using Mobile_ecommerce.Models.ViewModel.Common;
+using Mobile_ecommerce.Models.ViewModel.Contact;
 using Mobile_ecommerce.Models.ViewModel.Customer;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Mobile_ecommerce.Models.DAL
         {
             dbContext = new MobileDbContext();
         }
+
         public Create Details()
         {
             try
@@ -26,6 +28,27 @@ namespace Mobile_ecommerce.Models.DAL
                 return new Create();
             }
             catch
+            {
+                return null;
+            }
+        }
+        public async Task<Detail> GetByIdContact(int id)
+        {
+            try
+            {
+                return await (from a in dbContext.Contacts
+                              where a.ContactID == id
+                              select new Detail()
+                              {
+                                  ContactID=a.ContactID,
+                                  dienthoai=a.dienthoai,
+                                  noidung=a.noidung,
+                                  tieude=a.tieude,
+                                  mail=a.mail,
+                                  tenkh=a.tenkh
+                              }).SingleOrDefaultAsync();
+            }
+            catch (Exception)
             {
                 return null;
             }
@@ -71,6 +94,33 @@ namespace Mobile_ecommerce.Models.DAL
             {
                 return null;
             }
+        }
+        public async Task<ResultPaging<Detail>> GetListContact(GetListPaging paging)
+        {
+            IQueryable<Contact> model = dbContext.Contacts;
+            if (!string.IsNullOrEmpty(paging.keyWord))
+            {
+                model = model.Where(x => x.tenkh.Contains(paging.keyWord.Trim()) || x.mail.Contains(paging.keyWord.Trim()));
+            }
+
+            int total = await model.CountAsync();
+
+            var items = await model.OrderBy(x => x.ContactID)
+                .Skip((paging.PageIndex - 1) * paging.PageSize).Take(paging.PageSize)
+                .Select(item => new Detail()
+                {              
+                    ContactID=item.ContactID,
+                    tenkh = item.tenkh,
+                    mail = item.mail,
+                    tieude = item.tieude,
+                    noidung = item.noidung,
+                    dienthoai = item.dienthoai,
+                }).ToListAsync();
+            return new ResultPaging<Detail>()
+            {
+                Items = items,
+                TotalRecord = total
+            };
         }
         public async Task<ResultPaging<CustomerDetail>> GetList(GetListPaging paging)
         {

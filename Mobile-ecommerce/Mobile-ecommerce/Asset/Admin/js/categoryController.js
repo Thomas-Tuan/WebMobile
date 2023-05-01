@@ -19,7 +19,7 @@
                 str += "<td>" + value.LoaiID + "</td>";
                 str += "<td>" + value.TenLoai + "</td>";               
                 str += '<td class="d-flex justify-content-around"><a class="btn btn-warning" href="/Admin/Categories/Edit/' + value.LoaiID + '">Cập nhật</a>';
-                str += '<a class="btn btn-danger" href="#" data-user=' + value.LoaiID + '>Xóa</a>';
+                str += '<a class="btn btn-danger" href="#" data-user=' + value.LoaiID + '>Xóa</a></td>';
                 str += "</tr>";
 
                 //create pagination
