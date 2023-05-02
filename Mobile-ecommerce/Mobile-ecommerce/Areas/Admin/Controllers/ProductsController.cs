@@ -30,9 +30,12 @@ namespace Mobile_ecommerce.Areas.Admin.Controllers
             var selectColor = new SelectList(new List<SelectListItem>
         {
             new SelectListItem { Selected = true, Text ="Chọn màu sắc", Value = "-1"},
-            new SelectListItem {Text = "Black", Value = "Black"},
-            new SelectListItem {Text = "White", Value = "White"},
-            new SelectListItem {Text = "Blue", Value = "Blue"},
+            new SelectListItem {Text = "Màu đen", Value = "đen"},
+            new SelectListItem {Text = "Màu trắng", Value = "trắng"},
+            new SelectListItem {Text = "Màu xanh lá cây", Value = "xanh lá cây"},
+            new SelectListItem {Text = "Màu xanh dương", Value = "xanh dương"},
+            new SelectListItem {Text = "Màu tím", Value = "tím"},
+            new SelectListItem {Text = "Màu xám", Value = "xám"},
         }, "Value", "Text");
             ViewBag.lstColor = selectColor;              
             ViewBag.ListCate = await db.GetAllCategories();
@@ -72,12 +75,15 @@ namespace Mobile_ecommerce.Areas.Admin.Controllers
             var selectColor = new SelectList(new List<SelectListItem>
         {
             new SelectListItem { Selected = true, Text ="Chọn màu sắc", Value = "-1"},
-            new SelectListItem {Text = "Black", Value = "Black"},
-            new SelectListItem {Text = "White", Value = "White"},
-            new SelectListItem {Text = "Blue", Value = "Blue"},
+            new SelectListItem {Text = "Màu đen", Value = "đen"},
+            new SelectListItem {Text = "Màu trắng", Value = "trắng"},
+            new SelectListItem {Text = "Màu xanh lá cây", Value = "xanh lá cây"},
+            new SelectListItem {Text = "Màu xanh dương", Value = "xanh dương"},
+            new SelectListItem {Text = "Màu tím", Value = "tím"},
+            new SelectListItem {Text = "Màu xám", Value = "xám"},
         }, "Value", "Text");
-            ViewBag.lstColor = selectColor;     
-            ViewBag.ListCate = await db.GetAllCategories();       
+            ViewBag.lstColor = selectColor;
+            ViewBag.ListCate = await db.GetAllCategories();
             return View(pro);
         }
 

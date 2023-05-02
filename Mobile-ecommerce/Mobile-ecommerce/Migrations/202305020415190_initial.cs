@@ -148,6 +148,21 @@ namespace Mobile_ecommerce.Migrations
                 .PrimaryKey(t => t.VoucherID);
             
             CreateTable(
+                "dbo.ReviewProes",
+                c => new
+                    {
+                        ReviewProID = c.Int(nullable: false, identity: true),
+                        RateValue = c.Int(nullable: false),
+                        ReviewerName = c.String(),
+                        ReviewContent = c.String(),
+                        ReviewDate = c.DateTime(nullable: false),
+                        ProductID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ReviewProID)
+                .ForeignKey("dbo.Products", t => t.ProductID, cascadeDelete: true)
+                .Index(t => t.ProductID);
+            
+            CreateTable(
                 "dbo.Contacts",
                 c => new
                     {
@@ -160,22 +175,11 @@ namespace Mobile_ecommerce.Migrations
                     })
                 .PrimaryKey(t => t.ContactID);
             
-            CreateTable(
-                "dbo.ReviewProes",
-                c => new
-                    {
-                        ReviewProID = c.Int(nullable: false, identity: true),
-                        RateValue = c.Int(nullable: false),
-                        ReviewerName = c.String(),
-                        ReviewContent = c.String(),
-                        ReviewDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ReviewProID);
-            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.ReviewProes", "ProductID", "dbo.Products");
             DropForeignKey("dbo.Products", "OrderDetail_OrderDetailID", "dbo.OrderDetails");
             DropForeignKey("dbo.Orders", "VoucherID", "dbo.Vouchers");
             DropForeignKey("dbo.Shippings", "Order_OrderID", "dbo.Orders");
@@ -185,6 +189,7 @@ namespace Mobile_ecommerce.Migrations
             DropForeignKey("dbo.Users", "RoleID", "dbo.Roles");
             DropForeignKey("dbo.Orders", "CustomerID", "dbo.Customers");
             DropForeignKey("dbo.Products", "CategoryID", "dbo.Categories");
+            DropIndex("dbo.ReviewProes", new[] { "ProductID" });
             DropIndex("dbo.Shippings", new[] { "Order_OrderID" });
             DropIndex("dbo.OrderStatus", new[] { "Order_OrderID" });
             DropIndex("dbo.Users", new[] { "RoleID" });
@@ -194,8 +199,8 @@ namespace Mobile_ecommerce.Migrations
             DropIndex("dbo.OrderDetails", new[] { "OrderID" });
             DropIndex("dbo.Products", new[] { "OrderDetail_OrderDetailID" });
             DropIndex("dbo.Products", new[] { "CategoryID" });
-            DropTable("dbo.ReviewProes");
             DropTable("dbo.Contacts");
+            DropTable("dbo.ReviewProes");
             DropTable("dbo.Vouchers");
             DropTable("dbo.Shippings");
             DropTable("dbo.OrderStatus");

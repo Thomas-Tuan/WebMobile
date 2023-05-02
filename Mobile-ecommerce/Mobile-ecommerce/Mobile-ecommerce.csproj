@@ -165,9 +165,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202304301845245_initial.cs" />
-    <Compile Include="Migrations\202304301845245_initial.Designer.cs">
-      <DependentUpon>202304301845245_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202305020415190_initial.cs" />
+    <Compile Include="Migrations\202305020415190_initial.Designer.cs">
+      <DependentUpon>202305020415190_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DAL\CategoryDAL.cs" />
@@ -230,6 +230,7 @@
     <Content Include="Asset\Client\css\notfound.css" />
     <Content Include="Asset\Client\css\order.css" />
     <Content Include="Asset\Client\css\success.css" />
+    <Content Include="Asset\Client\img\banner-about.jpg" />
     <Content Include="Asset\Client\img\registerbanner.jpg" />
     <Content Include="Asset\Admin\js\categoryController.js" />
     <Content Include="Asset\Admin\js\common.js" />
@@ -2604,8 +2605,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202304301845245_initial.resx">
-      <DependentUpon>202304301845245_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305020415190_initial.resx">
+      <DependentUpon>202305020415190_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

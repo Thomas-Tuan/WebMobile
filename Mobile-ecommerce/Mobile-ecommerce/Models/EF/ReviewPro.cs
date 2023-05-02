@@ -19,5 +19,8 @@ namespace Mobile_ecommerce.Models.EF
         public string ReviewContent { get; set; }
         [Display(Name = "Ngày đăng")]
         public DateTime ReviewDate { get; set; }
+
+        public int ProductID { get; set; }
+        public Product Product { get; set; }
     }
 }

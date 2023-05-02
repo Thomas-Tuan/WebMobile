@@ -41,6 +41,10 @@ namespace Mobile_ecommerce.Controllers
             }
             return View();
         }
+        public ActionResult About()
+        {
+            return View();
+        }
         public ActionResult Logout()
         {
             Session[CommonConstants.USER_SESSION] = null;

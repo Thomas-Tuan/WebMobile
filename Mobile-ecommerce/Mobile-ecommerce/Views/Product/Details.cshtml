@@ -198,7 +198,7 @@
     </div>
     <div class="review--pro row mt-2 g-2">
         <div class="col-md-6">
-            @{ Html.RenderAction("ReviewPartial", "Product"); }
+            @{ Html.RenderAction("ReviewPartial", "Product", new { productId = Model.ProductID }); }
             <p class="text-danger">@ViewBag.error</p>
         </div>
         <div class="col-md-6">

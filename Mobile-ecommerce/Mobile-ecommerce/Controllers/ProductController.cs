@@ -79,16 +79,17 @@ namespace Mobile_ecommerce.Controllers
             ViewBag.Cate = pro.CategoryID;
             return View(pro);
         }
-        public ActionResult ReviewPartial()
+        public ActionResult ReviewPartial(int productId)
         {
-            return PartialView();
+            var model = new ReviewPro { ProductID = productId };
+            return PartialView(model);
         }
-        public ActionResult ListReview(int? page)
+        public ActionResult ListReview(int id,int? page)
         {
-            List<ReviewPro> products = db.ReviewPros.ToList();          
+            Product product = db.Products.Include(p => p.ReviewPros).FirstOrDefault(p => p.ProductID == id);
             int pageSize = 4;
             int pageNum = (page ?? 1);
-            return PartialView(products.OrderByDescending(n => n.ReviewProID).ToPagedList(pageNum, pageSize));
+            return PartialView(product.ReviewPros.ToPagedList(pageNum, pageSize));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -108,7 +109,7 @@ namespace Mobile_ecommerce.Controllers
                 db.SaveChanges();
                 TempData["AlertMessage"] = "Nhận xét thành công !";
                 TempData["AlertType"] = "alert-success";
-                return View("Details",pro);
+                return RedirectToAction("Details", new { id = review.ProductID });
             }
             ViewBag.error = "Vui lòng nhập thông tin nhận xét !";
             return View("Details",pro);
