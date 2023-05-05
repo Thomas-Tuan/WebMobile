@@ -19,9 +19,31 @@
                 str += "<td>" + value.OrderID + "</td>";
                 str += "<td>" + value.Ngay + "</td>";
                 str += "<td>" + value.TongTien + "</td>";
-                str += "<td>" + value.Status + "</td>";          
-                str += '<td class="d-flex justify-content-around"><a class="btn btn-info text-white" href="/Admin/OrderAd/Details/' + value.OrderID + '">Xem chi tiết</a>';
-                str += '<a class="btn btn-warning" href="/Admin/OrderAd/Edit/' + value.OrderID + '">Cập nhật</a></td>';           
+                if (value.Status == 1) {
+                    str += "<td>Đặt hàng thàng công</td>";
+                }
+                else if (value.Status == 2) {
+                    str += "<td>Đang duyệt</td>";
+                }
+                else if (value.Status == 3) {
+                    str += "<td>Đã duyệt</td>";
+                }
+                else if (value.Status == 4) {
+                    str += "<td>Đang giao </td>";
+                }
+                else if (value.Status == 5) {
+                    str += "<td>Đã giao</td>";
+                }
+                else if (value.Status == 6) {
+                    str += "<td>Hoàn tất</td>";
+                }
+                else {
+                    str += "<td>Đã hủy</td>";
+                }
+                str += '<td class="d-flex justify-content-around"><a class="btn btn-info text-white" href="/Order/Details/' + value.OrderID + '">Xem chi tiết</a>';
+                if (value.Status != 7 && value.Status != 6) {
+                    str += '<a class="btn btn-warning text-white" href="#" data-user=' + value.OrderID + '>Sửa đơn hàng</a></td>';
+                }
                 str += "</tr>";
 
                 //create pagination

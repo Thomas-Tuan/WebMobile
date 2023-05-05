@@ -12,6 +12,8 @@ namespace Mobile_ecommerce.Models.EF
         [Key]
         public int OrderID { get; set; }
         public DateTime OrderDate { get; set; }
+        public int Status { get; set; }
+        public int ShippingStatus { get; set; }
         [DisplayFormat(DataFormatString = "{0:N2}")]
         public decimal Total { get; set; }
 
@@ -20,12 +22,6 @@ namespace Mobile_ecommerce.Models.EF
         public int CustomerID { get; set; }
         public Customer Customer { get; set; }
 
-        public int ShippingID { get; set; }
-        public ICollection<Shipping> Shippings { get; set; }
-
-     
-        public int OrderStatusID { get; set; }
-        public ICollection<OrderStatus> OrderStatuses { get; set; }
 
         public string VoucherID { get; set; }
         public Voucher Vouchers { get; set; }

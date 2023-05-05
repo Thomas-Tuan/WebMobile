@@ -58,10 +58,10 @@ namespace Mobile_ecommerce.Migrations
                     {
                         OrderID = c.Int(nullable: false, identity: true),
                         OrderDate = c.DateTime(nullable: false),
+                        Status = c.Int(nullable: false),
+                        ShippingStatus = c.Int(nullable: false),
                         Total = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CustomerID = c.Int(nullable: false),
-                        ShippingID = c.Int(nullable: false),
-                        OrderStatusID = c.Int(nullable: false),
                         VoucherID = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.OrderID)
@@ -108,31 +108,6 @@ namespace Mobile_ecommerce.Migrations
                         Des = c.String(),
                     })
                 .PrimaryKey(t => t.RoleID);
-            
-            CreateTable(
-                "dbo.OrderStatus",
-                c => new
-                    {
-                        OrderStatusID = c.Int(nullable: false, identity: true),
-                        Status = c.String(),
-                        Order_OrderID = c.Int(),
-                    })
-                .PrimaryKey(t => t.OrderStatusID)
-                .ForeignKey("dbo.Orders", t => t.Order_OrderID)
-                .Index(t => t.Order_OrderID);
-            
-            CreateTable(
-                "dbo.Shippings",
-                c => new
-                    {
-                        ShippingID = c.Int(nullable: false, identity: true),
-                        ShippingMethod = c.String(),
-                        PriceShipping = c.Int(nullable: false),
-                        Order_OrderID = c.Int(),
-                    })
-                .PrimaryKey(t => t.ShippingID)
-                .ForeignKey("dbo.Orders", t => t.Order_OrderID)
-                .Index(t => t.Order_OrderID);
             
             CreateTable(
                 "dbo.Vouchers",
@@ -182,16 +157,12 @@ namespace Mobile_ecommerce.Migrations
             DropForeignKey("dbo.ReviewProes", "ProductID", "dbo.Products");
             DropForeignKey("dbo.Products", "OrderDetail_OrderDetailID", "dbo.OrderDetails");
             DropForeignKey("dbo.Orders", "VoucherID", "dbo.Vouchers");
-            DropForeignKey("dbo.Shippings", "Order_OrderID", "dbo.Orders");
-            DropForeignKey("dbo.OrderStatus", "Order_OrderID", "dbo.Orders");
             DropForeignKey("dbo.OrderDetails", "OrderID", "dbo.Orders");
             DropForeignKey("dbo.Customers", "CustomerID", "dbo.Users");
             DropForeignKey("dbo.Users", "RoleID", "dbo.Roles");
             DropForeignKey("dbo.Orders", "CustomerID", "dbo.Customers");
             DropForeignKey("dbo.Products", "CategoryID", "dbo.Categories");
             DropIndex("dbo.ReviewProes", new[] { "ProductID" });
-            DropIndex("dbo.Shippings", new[] { "Order_OrderID" });
-            DropIndex("dbo.OrderStatus", new[] { "Order_OrderID" });
             DropIndex("dbo.Users", new[] { "RoleID" });
             DropIndex("dbo.Customers", new[] { "CustomerID" });
             DropIndex("dbo.Orders", new[] { "VoucherID" });
@@ -202,8 +173,6 @@ namespace Mobile_ecommerce.Migrations
             DropTable("dbo.Contacts");
             DropTable("dbo.ReviewProes");
             DropTable("dbo.Vouchers");
-            DropTable("dbo.Shippings");
-            DropTable("dbo.OrderStatus");
             DropTable("dbo.Roles");
             DropTable("dbo.Users");
             DropTable("dbo.Customers");

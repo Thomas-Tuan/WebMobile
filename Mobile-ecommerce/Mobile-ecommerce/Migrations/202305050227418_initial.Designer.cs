@@ -13,7 +13,7 @@ namespace Mobile_ecommerce.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202305020415190_initial"; }
+            get { return "202305050227418_initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -67,7 +67,7 @@ namespace Mobile_ecommerce.Models.DAL
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return -1;
             }

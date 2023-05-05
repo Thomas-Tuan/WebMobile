@@ -18,9 +18,7 @@ namespace Mobile_ecommerce.Models.EF
         public DbSet<Role> Roles { get; set; }
         public DbSet<Customer> Customers { get; set; }               
         public DbSet<Product> Products { get; set; }       
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Shipping> Shippings { get; set; }
-        public DbSet<OrderStatus> OrderStatuses { get; set; }
+        public DbSet<Category> Categories { get; set; }   
         public DbSet<Order> Orders { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }

@@ -13,6 +13,7 @@ namespace Mobile_ecommerce.Models.ViewModel.Customer
 
         public string SoDienThoai { get; set; }
 
+        public string Mail { get; set; }
         public int GioiTinh { get; set; }
         public string DiaChi { get; set; }
        

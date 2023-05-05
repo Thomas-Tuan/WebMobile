@@ -163,12 +163,12 @@ namespace Mobile_ecommerce.Controllers
             {
                 order.Total = decimal.Parse(Session["TotalWithVoucher"].ToString());
             }
-            order.ShippingID = 1;
-            order.OrderStatusID = 1;
             if (Session["CouponCode"] != null)
             {
                 order.VoucherID = Session["CouponCode"].ToString();
-            }           
+            }
+            order.Status = 1;
+            order.ShippingStatus = 1;
             db.Orders.Add(order);
             db.SaveChanges();
             foreach(var item in cart.Items)
@@ -274,8 +274,6 @@ namespace Mobile_ecommerce.Controllers
                         {
                             order.Total = decimal.Parse(Session["TotalWithVoucher"].ToString());
                         }
-                        order.ShippingID = 1;
-                        order.OrderStatusID = 1;
                         if (Session["CouponCode"] != null)
                         {
                             order.VoucherID = Session["CouponCode"].ToString();

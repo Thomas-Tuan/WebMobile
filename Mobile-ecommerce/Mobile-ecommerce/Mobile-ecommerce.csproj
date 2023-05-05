@@ -140,7 +140,6 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\VoucherController.cs" />
     <Compile Include="Areas\Admin\Model\AdminLogin.cs" />
-    <Compile Include="Areas\Admin\Model\Chart.cs" />
     <Compile Include="Areas\Admin\Model\LoginCheck.cs" />
     <Compile Include="Areas\Admin\Model\ResultPaging.cs" />
     <Compile Include="Areas\Employee\Controllers\BaseController.cs" />
@@ -165,9 +164,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305020415190_initial.cs" />
-    <Compile Include="Migrations\202305020415190_initial.Designer.cs">
-      <DependentUpon>202305020415190_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202305050227418_initial.cs" />
+    <Compile Include="Migrations\202305050227418_initial.Designer.cs">
+      <DependentUpon>202305050227418_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DAL\CategoryDAL.cs" />
@@ -181,10 +180,8 @@
     <Compile Include="Models\EF\Customer.cs" />
     <Compile Include="Models\EF\MobileDbContext.cs" />
     <Compile Include="Models\EF\Order.cs" />
-    <Compile Include="Models\EF\OrderStatus.cs" />
     <Compile Include="Models\EF\Product.cs" />
     <Compile Include="Models\EF\ReviewPro.cs" />
-    <Compile Include="Models\EF\Shipping.cs" />
     <Compile Include="Models\EF\OrderDetail.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\Role.cs" />
@@ -222,7 +219,6 @@
     <Content Include="Asset\Admin\css\sb-admin-2.min.css" />
     <Content Include="Asset\Admin\img\add.jpg" />
     <Content Include="Asset\Admin\img\addnote.jpg" />
-    <Content Include="Asset\Admin\js\chartAdmin.js" />
     <Content Include="Asset\Admin\js\contactController.js" />
     <Content Include="Asset\Admin\js\orderController.js" />
     <Content Include="Asset\Admin\js\voucherController.js" />
@@ -2605,8 +2601,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305020415190_initial.resx">
-      <DependentUpon>202305020415190_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305050227418_initial.resx">
+      <DependentUpon>202305050227418_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

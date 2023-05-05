@@ -27,31 +27,21 @@ namespace Mobile_ecommerce.Models.DAL
                  Ngay=x.OrderDate.ToString(),
                  OrderID=x.OrderID,           
                  TongTien=x.Total,
+                 Status=x.Status,
+                 ShippingStatus=x.ShippingStatus
               }).ToList();
             return list;
         }
-
-        public async Task<List<Shipping>> GetAllShipping()
-        {
-            var cate = await dbContext.Shippings.ToListAsync();
-            return cate;
-        }
-        public async Task<List<OrderStatus>> GetAllStatus()
-        {
-            var cate = await dbContext.OrderStatuses.ToListAsync();
-            return cate;
-        }
-        public async Task<ResultPaging<Detail>> GetList(GetListPaging paging)
+        public async Task<ResultPaging<Detail>> GetListAD(GetListPaging paging)
         {
             var model = from a in dbContext.Orders
-                        join b in dbContext.OrderStatuses
-                        on a.OrderStatusID equals b.OrderStatusID
                         select new Detail()
                         {
                             OrderID = a.OrderID,
                             Ngay = a.OrderDate.ToString(),
                             TongTien = a.Total,
-                            Status=b.Status,
+                            Status = a.Status,
+                            ShippingStatus = a.ShippingStatus
                         };
             if (!string.IsNullOrEmpty(paging.keyWord))
             {
@@ -69,13 +59,41 @@ namespace Mobile_ecommerce.Models.DAL
                 TotalRecord = total
             };
         }
-        public async Task<bool> Edit(int id)
+
+        public async Task<ResultPaging<Detail>> GetList(GetListPaging paging,int id)
+        {
+            var model = from a in dbContext.Orders.Where(n => n.CustomerID == id)
+                        select new Detail()
+                        {
+                            OrderID = a.OrderID,
+                            Ngay = a.OrderDate.ToString(),
+                            TongTien = a.Total,
+                            Status = a.Status,
+                            ShippingStatus = a.ShippingStatus
+                        };
+            if (!string.IsNullOrEmpty(paging.keyWord))
+            {
+                model = model.Where(x => x.TongTien.ToString().Contains(paging.keyWord.Trim()));
+            }
+
+            int total = await model.CountAsync();
+
+            var items = await model.OrderBy(x => x.OrderID)
+                .Skip((paging.PageIndex - 1) * paging.PageSize).Take(paging.PageSize)
+                .ToListAsync();
+            return new ResultPaging<Detail>()
+            {
+                Items = items,
+                TotalRecord = total
+            };
+        }
+        public async Task<bool> Edit(int edit)
         {
             try
             {
-                var pro = await dbContext.Orders.FindAsync(id);
+                var pro = await dbContext.Orders.FindAsync(edit);
                 if (pro == null) return false;
-                pro.OrderStatusID = 6;
+                pro.Status = 7;
                 return await dbContext.SaveChangesAsync() > 0;
             }
             catch (Exception)
@@ -111,9 +129,7 @@ namespace Mobile_ecommerce.Models.DAL
         {
             try
             {
-                return await (from a in dbContext.Orders
-                              join b in dbContext.OrderStatuses
-                              on a.OrderStatusID equals b.OrderStatusID
+                return await (from a in dbContext.Orders                          
                               join c in dbContext.Customers
                   on a.CustomerID equals c.CustomerID
                               where a.OrderID.Equals(id)
@@ -123,9 +139,9 @@ namespace Mobile_ecommerce.Models.DAL
                                   TongTien = a.Total,
                                   CustomerID = a.CustomerID,
                                   OrderID = a.OrderID,
-                                  Name = c.CustomerName,
-                                  ShippingID = a.ShippingID,
-                                  StatusID = a.OrderStatusID,
+                                  Shipping=a.ShippingStatus,
+                                  Status=a.Status,
+                                  Name = c.CustomerName,               
                               }).SingleOrDefaultAsync();
             }
             catch (Exception)
@@ -138,9 +154,9 @@ namespace Mobile_ecommerce.Models.DAL
             try
             {
                 var pro = await dbContext.Orders.FindAsync(id);
-                if (pro == null) return false;              
-                pro.OrderStatusID = edit.StatusID;
-                pro.ShippingID = edit.ShippingID;
+                if (pro == null) return false;
+                pro.Status = edit.Status;
+                pro.ShippingStatus = edit.Shipping;
                 return await dbContext.SaveChangesAsync() > 0;
             }
             catch (Exception)

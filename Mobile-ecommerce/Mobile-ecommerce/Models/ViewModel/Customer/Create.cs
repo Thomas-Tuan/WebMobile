@@ -21,6 +21,9 @@ namespace Mobile_ecommerce.Models.ViewModel.Customer
         [Display(Name = "Địa chỉ")]
         public string Address { get; set; }
 
+        [Display(Name = "Mail")]
+        public string Mail { get; set; }
+
         [Required(ErrorMessage = "Bạn chưa nhập SĐT")]
         [Display(Name = "SĐT")]
         public string Phone { get; set; }

@@ -17,56 +17,69 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group align-items-center row">
-                                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-                                <div class="col-md-6">
-                                    @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group align-items-center row">
-                                @Html.LabelFor(model => model.ShippingID, new { @class = "control-label col-md-2" })
-                                <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.ShippingID, new SelectList(ViewBag.ListShipping, "ShippingID", "ShippingMethod"), new { @class = "form-control text-box single-line" })
-                                    @Html.ValidationMessageFor(model => model.ShippingID, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group align-items-center row">
-                                @Html.LabelFor(model => model.StatusID, new { @class = "control-label col-md-2" })
-                                <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.StatusID, new SelectList(ViewBag.ListStatus, "OrderStatusID", "Status"), new { @class = "form-control text-box single-line" })
-                                    @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group align-items-center row">
-                                @Html.LabelFor(model => model.Ngay, new { @class = "control-label col-md-2" })
-                                <div class="col-md-6">
-                                    @Html.DisplayFor(model => model.Ngay, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group align-items-center row">
-                                @Html.LabelFor(model => model.TongTien, new { @class = "control-label col-md-2" })
-                                <div class="col-md-6">
-                                    @Html.DisplayFor(model => model.TongTien, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.TongTien, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group align-items-center row mt-3">
-                                <div class="col-md-2">
-                                    @Html.ActionLink("Trở về", "Index", "OrderAd", null, new { @class = "btn btn-warning text-light" })
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="submit" value="Cập nhật" class="btn btn-primary" />
-                                </div>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Status, "Trạng thái", new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.Status, new List<SelectListItem>()
+                                {
+                                 new SelectListItem() {Value = "1", Text = "Đặt hàng thàng công"},
+                                 new SelectListItem() {Value = "2", Text = "Đang duyệt"},
+                                 new SelectListItem() {Value = "3", Text = "Đã duyệt"},
+                                 new SelectListItem() {Value = "4", Text = "Đang giao"},
+                                 new SelectListItem() {Value = "5", Text = "Đã giao"},
+                                 new SelectListItem() {Value = "6", Text = "Hoàn tất "},
+                                 new SelectListItem() {Value = "7", Text = "Đã hủy"},
+                                },
+                                new { @class = "form-control text-box single-line" })
+                            </div>
+                        </div>
+
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Shipping, "Phương thức vận chuyển", new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.Shipping, new List<SelectListItem>()
+                                {
+                                 new SelectListItem() {Value = "1", Text = "Nhận hàng tại quầy"},
+                                 new SelectListItem() {Value = "2", Text = "Vận chuyển bằng phương tiện xe"},
+                                },
+                                new { @class = "form-control text-box single-line" })
+                            </div>
+                        </div>
+
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.Ngay, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.Ngay, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row">
+                            @Html.LabelFor(model => model.TongTien, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.TongTien, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TongTien, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group align-items-center row mt-3">
+                            <div class="col-md-2">
+                                @Html.ActionLink("Trở về", "Index", "OrderAd", null, new { @class = "btn btn-warning text-light" })
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
                     }
                 </div>
             </div>

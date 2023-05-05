@@ -169,10 +169,10 @@ C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\bin\System.Web.Opti
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\bin\Newtonsoft.Json.xml
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\bin\Antlr3.Runtime.pdb
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csprojAssemblyReference.cache
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csproj.CoreCompileInputs.cache
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csproj.CopyComplete
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.dll
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.pdb
+C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csprojAssemblyReference.cache
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile_ecommerce.Migrations.initial.resources
 C:\Users\Acer\Desktop\doan\Mobile-ecommerce\Mobile-ecommerce\obj\Debug\Mobile-ecommerce.csproj.GenerateResource.cache

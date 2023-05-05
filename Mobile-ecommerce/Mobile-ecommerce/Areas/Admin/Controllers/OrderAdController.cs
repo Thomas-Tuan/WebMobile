@@ -25,7 +25,7 @@ namespace Mobile_ecommerce.Areas.Admin.Controllers
                 PageIndex = pageIndex,
                 PageSize = pageSize
             };
-            var data = await db.GetList(request);
+            var data = await db.GetListAD(request);
             int totalRecord = data.TotalRecord;
             int totalPage = (int)Math.Ceiling((double)totalRecord / pageSize);
             return Json(new { data = data.Items, pageCurrent = pageIndex, totalPage = totalPage, totalRecord = totalRecord }
@@ -43,9 +43,7 @@ namespace Mobile_ecommerce.Areas.Admin.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
-            var pro = await db.GetById(id);
-            ViewBag.ListShipping = await db.GetAllShipping();
-            ViewBag.ListStatus = await db.GetAllStatus();
+            var pro = await db.GetById(id);       
             return View(pro);
         }
         [HttpPost]

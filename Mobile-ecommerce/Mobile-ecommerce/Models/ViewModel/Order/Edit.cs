@@ -15,14 +15,14 @@ namespace Mobile_ecommerce.Models.ViewModel.Order
         [Display(Name = "Tổng tiền")]
         public decimal TongTien { get; set; }
         [Display(Name = "Tình trạng")]
-        public int StatusID { get; set; }
+        public int Status { get; set; }
         [Display(Name = "Mã khách hàng")]
         public int CustomerID { get; set; }
 
         [Display(Name = "Tên khách hàng")]
         public string Name { get; set; }
 
-        [Display(Name = "Phương thức vận chuyển")]
-        public int ShippingID { get; set; }
+        [Display(Name = "Tình trạng giao hàng")]
+        public int Shipping { get; set; }
     }
 }

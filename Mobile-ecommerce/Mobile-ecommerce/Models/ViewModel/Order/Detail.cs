@@ -15,6 +15,8 @@ namespace Mobile_ecommerce.Models.ViewModel.Order
         [Display(Name = "Tổng tiền")]
         public decimal TongTien { get; set; }
         [Display(Name = "Tình trạng")]
-        public string Status { get; set; }
+        public int Status { get; set; }
+        [Display(Name = "Tình trạng giao hàng")]
+        public int ShippingStatus { get; set; }
     }
 }

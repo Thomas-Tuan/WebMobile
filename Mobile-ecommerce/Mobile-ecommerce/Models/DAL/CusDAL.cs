@@ -64,6 +64,7 @@ namespace Mobile_ecommerce.Models.DAL
                                   MaKH = a.CustomerID,
                                   Name = a.CustomerName,
                                   Phone = a.Phone,
+                                  Mail=a.Email,
                                   Image = a.Image,
                                   Gender = a.Gender,
                                   Address = a.Address,                                                  
@@ -149,6 +150,7 @@ namespace Mobile_ecommerce.Models.DAL
                 TotalRecord = total
             };
         }
+        //Admin
         public async Task<bool> EditCus(Edit cusEdit, int id, HttpServerUtilityBase httpServer)
         {
             try
@@ -166,6 +168,7 @@ namespace Mobile_ecommerce.Models.DAL
                 }
                 cus.CustomerName = cusEdit.Name;
                 cus.Address = cusEdit.Address;
+                cus.Email = cusEdit.Mail;
                 cus.Phone = cusEdit.Phone;
                 cus.Gender = cusEdit.Gender;
                 cus.Image = cusEdit.Image;
@@ -198,6 +201,7 @@ namespace Mobile_ecommerce.Models.DAL
                         CustomerID = customer.MaKH,
                         CustomerName = customer.Name,
                         Gender = customer.Gender,
+                        Email = customer.Mail,
                         Image = customer.Image,
                         Address = customer.Address,
                         Phone = customer.Phone,
@@ -240,6 +244,7 @@ namespace Mobile_ecommerce.Models.DAL
                     AnhDaiDien = item.Image,
                     Ten = item.CustomerName,
                     GioiTinh =item.Gender,
+                    Mail=item.Email,
                     DiaChi = item.Address,
                     SoDienThoai = item.Phone,
                 };
@@ -249,6 +254,7 @@ namespace Mobile_ecommerce.Models.DAL
                 return null;
             }
         }       
+        //Client
         public async Task<bool> UpdateClient(CustomerEditClient item, HttpServerUtilityBase httpServer)
         {
             try
@@ -269,6 +275,7 @@ namespace Mobile_ecommerce.Models.DAL
                 member.CustomerName = item.Ten;
                 member.Gender = item.GioiTinh;
                 member.Address = item.DiaChi;
+                member.Email = item.Mail;
                 member.Phone = item.SoDienThoai;             
                 return await dbContext.SaveChangesAsync() > 0;
             }

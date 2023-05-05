@@ -1,14 +1,54 @@
 ﻿@using Mobile_ecommerce.Models.ViewModel.Order
+@using System.Globalization;
 @{
     ViewBag.Title = "Home";
     Layout = "~/Areas/Admin/Views/Shared/Admin_LayoutPage.cshtml";
     var totalBill = (List<Detail>)ViewBag.TongTien;
-    int i = 0;
-    decimal[] arr = new decimal[12];
+    DateTime tmp;
+    decimal[] total = new decimal[12];
     foreach (var item in totalBill)
     {
-        arr[i] = item.TongTien;
-        i++;
+        tmp = DateTime.Parse(item.Ngay, CultureInfo.InvariantCulture);
+        int monthIndex = tmp.Month - 1;
+        switch (monthIndex)
+        {
+            case 0:
+                total[0] += item.TongTien;
+                break;
+            case 1:
+                total[1] += item.TongTien;
+                break;
+            case 2:
+                total[2] += item.TongTien;
+                break;
+            case 3:
+                total[3] += item.TongTien;
+                break;
+            case 4:
+                total[4] += item.TongTien;
+                break;
+            case 5:
+                total[5] += item.TongTien;
+                break;
+            case 6:
+                total[6] += item.TongTien;
+                break;
+            case 7:
+                total[7] += item.TongTien;
+                break;
+            case 8:
+                total[8] += item.TongTien;
+                break;
+            case 9:
+                total[9] += item.TongTien;
+                break;
+            case 10:
+                total[10] += item.TongTien;
+                break;
+            case 11:
+                total[total.Length - 1] += item.TongTien;
+                break;
+        }
     }
 }
 @section scripts {
@@ -48,7 +88,7 @@
                     pointHoverBackgroundColor: "rgba(2,117,216,1)",
                     pointHitRadius: 50,
                     pointBorderWidth: 2,
-                    data:[@arr[0], @arr[1], @arr[2], @arr[3], @arr[4], @arr[5], @arr[6], @arr[7], @arr[8], @arr[9], @arr[10], @arr[11]]
+                    data: [@total[0],@total[1],@total[2],@total[3],@total[4],@total[5],@total[6],@total[7],@total[8],@total[9],@total[10],@total[total.Length - 1]]
                 }],
             },
             options: {
